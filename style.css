@@ -1,0 +1,555 @@
+/* ============================================
+   PORTFÓLIO - Gabriel Figueiredo Mafra Ferreira
+   CSS3 Puro | Dark Mode como padrão
+   Disciplina: Fundamentos da Programação Web
+   ============================================ */
+
+/* --- Importação de fontes do Google Fonts --- */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&family=Syne:wght@400;600;700;800&display=swap');
+
+/* ============================================
+   VARIÁVEIS DE TEMA (Dark Mode padrão)
+   ============================================ */
+:root {
+  /* Cores dark */
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #111118;
+  --bg-card: #16161f;
+  --bg-card-hover: #1e1e2a;
+
+  /* Acento principal: verde-cyan tecnológico */
+  --accent: #00e5a0;
+  --accent-dim: rgba(0, 229, 160, 0.12);
+  --accent-glow: rgba(0, 229, 160, 0.3);
+
+  /* Texto */
+  --text-primary: #eaeaf5;
+  --text-secondary: #8888aa;
+  --text-muted: #55556a;
+
+  /* Bordas e divisores */
+  --border: rgba(255, 255, 255, 0.07);
+  --border-accent: rgba(0, 229, 160, 0.25);
+
+  /* Navbar */
+  --nav-bg: rgba(10, 10, 15, 0.92);
+
+  /* Sombras */
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --shadow-accent: 0 0 24px rgba(0, 229, 160, 0.15);
+
+  /* Fonte */
+  --font-display: 'Syne', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Transição global */
+  --transition: 0.3s ease;
+}
+
+/* ============================================
+   TEMA CLARO (ativado via JS - classe .light)
+   ============================================ */
+body.light {
+  --bg-primary: #f0f0f5;
+  --bg-secondary: #e8e8f0;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f5f5ff;
+
+  --accent: #007a55;
+  --accent-dim: rgba(0, 122, 85, 0.1);
+  --accent-glow: rgba(0, 122, 85, 0.2);
+
+  --text-primary: #0f0f1a;
+  --text-secondary: #44445a;
+  --text-muted: #888899;
+
+  --border: rgba(0, 0, 0, 0.08);
+  --border-accent: rgba(0, 122, 85, 0.25);
+
+  --nav-bg: rgba(240, 240, 245, 0.92);
+
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.08);
+  --shadow-accent: 0 0 24px rgba(0, 122, 85, 0.1);
+}
+
+/* ============================================
+   RESET E BASE
+   ============================================ */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* compensa a navbar fixa */
+}
+
+body {
+  font-family: var(--font-display);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  transition: background-color var(--transition), color var(--transition);
+  overflow-x: hidden;
+}
+
+/* Scrollbar customizada */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+/* ============================================
+   NAVBAR
+   ============================================ */
+#menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--nav-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition);
+}
+
+#menu ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  list-style: none;
+  padding: 0 2rem;
+  height: 68px;
+  flex-wrap: wrap;
+}
+
+#menu ul li a {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: color var(--transition), background var(--transition);
+  position: relative;
+}
+
+/* Linha underline animada nos links */
+#menu ul li a::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 1rem;
+  right: 1rem;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform var(--transition);
+}
+
+#menu ul li a:hover {
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+
+#menu ul li a:hover::after,
+#menu ul li a.ativo::after {
+  transform: scaleX(1);
+}
+
+/* Link ativo (seção visível no momento) */
+#menu ul li a.ativo {
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+
+/* Botão de tema */
+.btn-tema {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--accent-dim);
+  color: var(--accent);
+  border: 1px solid var(--border-accent);
+  padding: 0.45rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background var(--transition), box-shadow var(--transition), transform 0.15s;
+}
+
+.btn-tema:hover {
+  background: var(--accent);
+  color: var(--bg-primary);
+  box-shadow: var(--shadow-accent);
+  transform: scale(1.05);
+}
+
+/* ============================================
+   MAIN E SEÇÕES
+   ============================================ */
+main {
+  padding-top: 68px; /* evita conteúdo atrás da navbar */
+}
+
+section {
+  min-height: 100vh;
+  padding: 6rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Títulos de seção */
+section h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 2.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+/* Barra decorativa no título */
+section h1::before {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+/* Subtítulos internos */
+h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+p {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  font-size: 0.98rem;
+}
+
+p strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* ============================================
+   SEÇÃO: SOBRE MIM
+   ============================================ */
+.perfil-apresentacao {
+  animation: fadeUp 0.6s ease both;
+}
+
+/* Tag de código decorativa antes do parágrafo */
+.perfil-apresentacao > p:first-of-type::before {
+  content: '// ';
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+/* Lista de hobbies */
+.perfil-apresentacao ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.perfil-apresentacao ul li {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.perfil-apresentacao ul li:hover {
+  background: var(--bg-card-hover);
+  transform: translateX(4px);
+  box-shadow: var(--shadow-accent);
+}
+
+.perfil-apresentacao ul li strong {
+  display: block;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+/* ============================================
+   SEÇÃO: FORMAÇÃO
+   ============================================ */
+.formacao-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.75rem;
+  margin-bottom: 1.25rem;
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+  animation: fadeUp 0.5s ease both;
+}
+
+.formacao-item:hover {
+  border-color: var(--border-accent);
+  box-shadow: var(--shadow-card), var(--shadow-accent);
+  transform: translateY(-2px);
+}
+
+.formacao-item p {
+  margin-bottom: 0.4rem;
+}
+
+.formacao-item p em {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+/* Lista dentro de formação */
+.formacao-item ul {
+  list-style: none;
+  margin-top: 0.5rem;
+}
+
+.formacao-item ul li {
+  color: var(--text-secondary);
+  font-size: 0.93rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.formacao-item ul li:last-child {
+  border-bottom: none;
+}
+
+.formacao-item ul li strong {
+  color: var(--text-primary);
+}
+
+/* ============================================
+   SEÇÃO: PORTFÓLIO
+   ============================================ */
+#portfolio > p {
+  margin-bottom: 2rem;
+}
+
+.projeto-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+  animation: fadeUp 0.5s ease both;
+}
+
+/* Brilho de canto decorativo */
+.projeto-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle at top right, var(--accent-glow), transparent 70%);
+  pointer-events: none;
+}
+
+.projeto-card:hover {
+  border-color: var(--border-accent);
+  box-shadow: var(--shadow-card), var(--shadow-accent);
+  transform: translateY(-3px);
+}
+
+.projeto-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  color: var(--accent);
+}
+
+.links-projeto {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+
+/* Botões dos projetos */
+.btn-projeto {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  padding: 0.55rem 1.2rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-accent);
+  color: var(--accent);
+  background: transparent;
+  transition: background var(--transition), color var(--transition), box-shadow var(--transition);
+}
+
+.btn-projeto:hover {
+  background: var(--accent);
+  color: var(--bg-primary);
+  box-shadow: var(--shadow-accent);
+}
+
+/* Botão "Ver Online" — destaque extra */
+.btn-live {
+  background: var(--accent-dim);
+}
+
+/* ============================================
+   SEÇÃO: CONTATO
+   ============================================ */
+#formContato {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+}
+
+/* Inputs e textarea */
+#formContato input,
+#formContato textarea {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.9rem 1.2rem;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  resize: vertical;
+}
+
+#formContato input::placeholder,
+#formContato textarea::placeholder {
+  color: var(--text-muted);
+}
+
+#formContato input:focus,
+#formContato textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-dim);
+}
+
+#formContato textarea {
+  min-height: 140px;
+}
+
+/* Botão de envio */
+#formContato button[type="submit"] {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: var(--accent);
+  color: var(--bg-primary);
+  border: none;
+  border-radius: 8px;
+  padding: 0.9rem 2rem;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: opacity var(--transition), transform 0.15s, box-shadow var(--transition);
+}
+
+#formContato button[type="submit"]:hover {
+  opacity: 0.88;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-accent);
+}
+
+/* Mensagem de feedback (exibida via JS) */
+#mensagem-feedback {
+  display: none;
+  margin-top: 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-dim);
+  color: var(--accent);
+  animation: fadeUp 0.3s ease;
+}
+
+/* ============================================
+   ANIMAÇÕES
+   ============================================ */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   RESPONSIVIDADE - MOBILE
+   ============================================ */
+@media (max-width: 640px) {
+  #menu ul {
+    gap: 0.1rem;
+    padding: 0 1rem;
+    height: auto;
+    padding-block: 0.75rem;
+  }
+
+  #menu ul li a {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .btn-tema {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.75rem;
+  }
+
+  section {
+    padding: 5rem 1.25rem 3rem;
+  }
+
+  .links-projeto {
+    flex-direction: column;
+  }
+
+  .btn-projeto {
+    text-align: center;
+  }
+
+  #formContato button[type="submit"] {
+    align-self: stretch;
+    text-align: center;
+  }
+}

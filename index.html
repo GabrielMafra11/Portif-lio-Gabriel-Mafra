@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfólio - Gabriel Figueiredo Mafra Ferreira</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ===================== NAVEGAÇÃO ===================== -->
+    <nav id="menu">
+      <ul>
+        <li><a href="#sobre">Sobre mim</a></li>
+        <li><a href="#formacao">Formação</a></li>
+        <li><a href="#portfolio">Portfólio</a></li>
+        <li><a href="#contato">Contato</a></li>
+        <li>
+          <button class="btn-tema" onclick="alternarTema()">
+            ☀️ Tema Claro
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    <main>
+      <!-- ===================== SOBRE MIM ===================== -->
+      <section id="sobre">
+        <h1>Sobre Mim</h1>
+
+        <div class="perfil-apresentacao">
+          <p>
+            Olá! Meu nome é
+            <strong>Gabriel Figueiredo Mafra Ferreira</strong>, tenho 21 anos e
+            nasci em Poços de Caldas - MG. Atualmente, sou graduando do 2° ano
+            de Bacharelado em <strong>Ciência da Computação</strong>, onde venho
+            desenvolvendo habilidades sólidas em lógica de programação e
+            linguagens como Python e Java.
+          </p>
+
+          <p>
+            Atualmente, concilio meus estudos com o trabalho no setor de
+            construção civil, atuando na área de manutenção e pintura. Essa
+            experiência me proporcionou uma visão muito prática de resolução de
+            problemas e atenção aos detalhes, características que busco aplicar
+            diretamente na área de desenvolvimento de software.
+          </p>
+
+          <h3>Interesses e Hobbies</h3>
+          <ul>
+            <li>
+              <strong>Tecnologia e Programação</strong>
+              Estudando desenvolvimento backend com foco em Python e Java, com
+              interesse em me especializar futuramente em Cybersecurity.
+            </li>
+            <li>
+              <strong>Leitura e Pesquisa</strong>
+              Leitor de documentações técnicas e literatura voltada ao
+              desenvolvimento pessoal e tecnológico, buscando constante
+              atualização sobre as tendências do mercado.
+            </li>
+            <li>
+              <strong>Sistemas e Manutenção</strong>
+              Entusiasta do funcionamento mecânico e estrutural (reparos DIY),
+              aplicando o raciocínio lógico tanto em hardware quanto em
+              software.
+            </li>
+            <li>
+              <strong>Atividades ao ar livre</strong>
+              Gosto de praticar trilhas e contato com a natureza para
+              desenvolvimento de resiliência, saúde mental e longevidade.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===================== FORMAÇÃO ===================== -->
+      <section id="formacao">
+        <h1>Formação e Qualificações</h1>
+
+        <div class="formacao-item">
+          <h3>Graduação</h3>
+          <p><strong>Bacharelado em Ciência da Computação</strong></p>
+          <p>Centro Universitário Internacional UNINTER | 2025 - Atual</p>
+          <p>
+            <em
+              >Cursando o 3º período com foco em Desenvolvimento Backend e
+              Lógica de Programação.</em
+            >
+          </p>
+        </div>
+
+        <div class="formacao-item">
+          <h3>Cursos Complementares</h3>
+          <ul>
+            <li>
+              <strong>Curso Discover - Rocketseat:</strong>
+              Desenvolvimento Web focado em fundamentos de HTML, CSS e
+              JavaScript.
+            </li>
+            <li>
+              <strong>Cybersecurity:</strong>
+              Estudos independentes sobre segurança da informação e proteção de
+              dados.
+            </li>
+          </ul>
+        </div>
+
+        <div class="formacao-item">
+          <h3>Idiomas</h3>
+          <ul>
+            <li><strong>Português:</strong> Nativo.</li>
+            <li>
+              <strong>Espanhol:</strong> Nível Intermediário (Aprendizado
+              Autodidata).
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===================== PORTFÓLIO ===================== -->
+      <section id="portfolio">
+        <h1>Meu Portfólio</h1>
+        <p>
+          Abaixo, apresento os projetos que demonstram minha evolução técnica em
+          desenvolvimento web e lógica de programação.
+        </p>
+
+        <div class="projeto-card">
+          <h3>Projeto Discover - Rocketseat</h3>
+          <p>
+            <strong>Descrição:</strong> Aplicação web desenvolvida para
+            consolidar fundamentos de front-end. O projeto foca em semântica
+            estrutural e design responsivo.
+          </p>
+          <p><strong>Tecnologias:</strong> HTML5, CSS3 e JavaScript.</p>
+
+          <div class="links-projeto">
+            <a
+              href="https://github.com/gabrielmafra11/First-project"
+              target="_blank"
+              class="btn-projeto"
+              >Código Fonte</a
+            >
+            <a
+              href="https://gabrielmafra11.github.io/First-project/"
+              target="_blank"
+              class="btn-projeto btn-live"
+              >Ver Site Online</a
+            >
+          </div>
+        </div>
+
+        <div class="projeto-card">
+          <h3>Portfólio Profissional (Este Site)</h3>
+          <p>
+            <strong>Descrição:</strong> Site desenvolvido como atividade prática
+            para a disciplina de Fundamentos de Web. Criado totalmente do zero,
+            sem uso de frameworks, focando em organização de código e
+            manipulação de DOM.
+          </p>
+          <p><strong>Tecnologias:</strong> HTML5, CSS3 e JavaScript Puro.</p>
+
+          <div class="links-projeto">
+            <a
+              href="https://github.com/gabrielmafra11/portfolio-uninter"
+              target="_blank"
+              class="btn-projeto"
+              >Repositório do Portfólio</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== CONTATO ===================== -->
+      <section id="contato">
+        <h1>Contato</h1>
+
+        <form id="formContato">
+          <input type="text" id="nome" placeholder="Seu Nome" required />
+          <input type="email" id="email" placeholder="Seu E-mail" required />
+          <textarea
+            id="mensagem"
+            placeholder="Sua Mensagem"
+            required
+          ></textarea>
+          <button type="submit">Enviar Mensagem</button>
+        </form>
+
+        <!-- Mensagem de feedback exibida pelo JavaScript após envio -->
+        <div id="mensagem-feedback"></div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
